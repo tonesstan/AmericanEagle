@@ -63,20 +63,24 @@ public class PurchaseTest {
 
         $x("//h2[text() = 'Added to bag!']").shouldBe(visible);
         $("button.qa-btn-view-bag").click();
+        System.out.println("Выбранный товар добавлен в корзину.");
 
         $x("//h1[text() = 'Shopping Bag']").shouldBe(visible);
+        System.out.println("Зашли на страницу корзины.");
         switchTo().frame($("iframe.component-frame").should(exist).shouldBe(visible));
-        scrollToElement($("div.paypal-button-label-container").shouldBe(visible));
-        $("div.paypal-button-label-container").click();
+        scrollToElement($("img.paypal-logo").shouldBe(visible));
+        $("img.paypal-logo").click();
+        System.out.println("Выбрали PayPal для оплаты товара.");
 
         switchTo().window(1);
         $("h1#headerText").shouldBe(visible).shouldHave(text("Pay with PayPal"));
-        $("div#ccpaCookieBanner").shouldBe(visible).$("#acceptAllButton").click();
+        System.out.println("Перешли на страницу оплаты PayPal.\nТестируем её компоненты.");
         $("#emailSubTagLine").shouldBe(visible).shouldHave(text("Enter your email address to get started."));
         $("#forgotEmail").shouldBe(visible).shouldHave(text("Forgot email?"));
         $("#btnNext").shouldBe(visible).shouldHave(text("Next"));
         $("#startOnboardingFlow").shouldBe(visible).shouldHave(text("Create an Account"));
         $("#cancelLink").shouldBe(visible).scrollTo().shouldHave(text("Cancel and return to American Eagle Outfitters, Inc.")).click();
+        System.out.println("Тест компонентов страницы оплаты PayPal прошёл успешно.\nВозвращаемся на страницу корзины.");
 
         switchTo().window(0);
         switchTo().defaultContent();
