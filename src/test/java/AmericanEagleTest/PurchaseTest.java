@@ -53,10 +53,11 @@ public class PurchaseTest {
         scrollToElement($("h1.qa-non-link-label").shouldBe(visible));
         element = hoverRandomElement($("div.results-list, div.product-list"), $("div.tile-media"));
         assert element != null;
-        element.$("a.clickable").shouldBe(visible).click();
+        element.click();
 
-        $("h2.modal-title").shouldBe(visible);
-        $("span.dropdown-text").shouldBe(visible).scrollTo().click();
+        $("h1._product-name_kfr7e8").shouldBe(visible);
+        scrollToElement($("span.dropdown-text").shouldBe(visible));
+        $("span.dropdown-text").click();
         clickRandomElement($("ul.dropdown-menu").shouldBe(visible), $("a:not(:has(small))"));
         $("button.qa-btn-add-to-bag").click();
 
